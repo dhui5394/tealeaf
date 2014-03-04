@@ -1,0 +1,41 @@
+Dave's Answers to Quiz: Lesson 2
+
+Name what each of the below is
+
+@a = 2
+# @a is an instance variable of a class where 2 is a fixnum
+
+user = User.new
+# user is an object, specifically an instance of the class User
+
+user.name
+# this is a getter method of the instance "user" for the instance variable "name"
+
+user.name = "Joe"
+# this is a setter method of the instance "user" setting the instannce varilable to the string "Joe"
+
+How does a class mixin a module?
+#with the word "include"
+
+What's the difference between class variables and instance variables?
+# class variables are available to instances, but not vice versa
+
+What does attr_accessor do?
+# easy way to create both setter and getter methods for instance variables
+
+How would you describe this expression: Dog.some_method
+#"some_method" is a class method that acts on the class "Dog"
+
+In Ruby, what's the difference between subclassing and mixing in modules?
+#Scope is different; Mix-ins are the same level as the class that includes them whereas subclasses inherit properties of the super class
+
+Given that I can instantiate a user like this: User.new('Bob'), what would the initialize method look like for the User class?
+def initialize(n)
+  @name = n
+end
+
+Can you call instance methods of the same class from other instance methods in that class?
+#yes
+
+When you get stuck, what's the process you use to try to trap the error?
+# Ideally binding.pry, but I haven't practiced that enough yet to use it well.

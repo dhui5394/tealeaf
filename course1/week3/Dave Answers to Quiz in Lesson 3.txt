@@ -1,0 +1,53 @@
+------------------------------------------------------
+What is HTML? What is CSS? What is Javascript?
+
+HTML is a markup langauge that allows for hypertext links.
+CSS is for styling elements that use HTML tags. 
+Javascript allows for neat functionality at the client level without passing data to/from backend.
+------------------------------------------------------
+What are the major parts of an HTTP request?
+
+GET + POST + params
+------------------------------------------------------
+What are the major parts of an HTTP response?
+
+Embedded ruby views that pull data from database or cookie.
+------------------------------------------------------
+How do you submit an HTTP POST request, with a "username" attribute set to "bob"? What if we wanted a GET request instead?
+
+For POST request, use a form and set the username to bob.
+For GET request, use the query string (e.g., www.yahoo.com?username="bob")
+------------------------------------------------------
+Why is it important for us, as web developers, to understand that HTTP is a "stateless" protocol?
+
+So we know when we need to use persistence in cookies or databases.
+------------------------------------------------------
+If the internet is just HTTP requests/responses, why do we only use browsers to interface with web applications? Are there any other options?
+
+Consumers are used to browsers because it is UI/UX friendly, but one can also use API's. 
+------------------------------------------------------
+What is MVC, and why is it important?
+
+Model-View-Controller is a framework that organizes the major components of web development. It's important to provide a structure for an app that others can also easily understand and build on top of. 
+------------------------------------------------------
+Sinatra Questions : At a high level, how are requests processed?
+
+The main ruby file determines where get/post requests should go and any appropriate erb file to help display new content.
+------------------------------------------------------
+Sinatra Questions : In the controller/action, what's the difference between rendering and redirecting?
+
+Rendering creates a new page/layout, but redirecting points to another page which has it's own rendering rules.
+------------------------------------------------------
+Sinatra Questions : In the ERB view template, how do you show dynamic content?
+
+<%= %> displayes content
+<% %> processes dynamic content which can influence displayed content
+------------------------------------------------------
+Sinatra Questions : Given what you know about ERB templates, when do you suppose the ERB template is turned into HTML?
+
+Before the server passes html over to the client/browser.
+------------------------------------------------------
+Sinatra Questions : What's the role of instance variables in Sinatra?
+
+To create a variable that is accesible for the length of one instance, in this case a browser session.
+------------------------------------------------------

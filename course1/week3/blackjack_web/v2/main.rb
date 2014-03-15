@@ -90,15 +90,13 @@ get '/play_game' do
   session[:player_cards] << session[:deck].pop
   session[:dealer_cards] << session[:deck].pop
 
-## hui compare, tihs 21 check seems uneeded
+  # ==== Check is player happens to start with a blackjack ====
   if calc_hand_total(session[:player_cards]) == BLACKJACK_NUMBER
     @show_hit_or_stay_option = false
-    # @player_hits_blackjack = session[:player_name] + " hit BLACKJACK!"
     player_wins!(session[:player_name] + " hit BLACKJACK!")
   end
 
   erb :play_game
-
 end
 
 post '/play_game/player/hit' do
@@ -106,11 +104,9 @@ post '/play_game/player/hit' do
 
   if calc_hand_total(session[:player_cards]) > BLACKJACK_NUMBER
     @show_hit_or_stay_option = false
-    # @player_busts = session[:player_name] + " BUSTED."
     player_loses!(session[:player_name] + " BUSTED.")
   elsif calc_hand_total(session[:player_cards]) == BLACKJACK_NUMBER
     @show_hit_or_stay_option = false
-    # @player_hits_blackjack = session[:player_name] + " hit BLACKJACK!"
     player_wins!(session[:player_name] + " hit BLACKJACK!")
   end
     
@@ -120,7 +116,6 @@ end
 post '/play_game/player/stay' do
   @show_hit_or_stay_option = false
   @player_chose_to_stay = session[:player_name] + " chose to stay."
-  # @show_dealer_playing_cards = true
   @show_dealer_play_button = true
   erb :play_game
 end
@@ -130,7 +125,6 @@ post '/play_game/dealer/play' do
 
   if calc_hand_total(session[:dealer_cards]) == BLACKJACK_NUMBER
     player_loses!("Dealer has blackjack!")
-    # @error = "Dealer has blackjack. You lose."
   end
 
   # ==== If the Player Hasn't Busted, Run the Dealer's Hand ====
@@ -138,11 +132,9 @@ post '/play_game/dealer/play' do
     session[:dealer_cards] << session[:deck].pop
     if calc_hand_total(session[:dealer_cards]) > BLACKJACK_NUMBER
       player_wins!("Dealer busts!")
-      # @success = "DEALER BUSTS. YOU WIN!"
       @show_dealer_play_button = false
     elsif calc_hand_total(session[:dealer_cards]) == BLACKJACK_NUMBER
       player_loses!("Dealer has blackjack!")
-      # @error = "Dealer has blackjack. You lose."
       @show_dealer_play_button = false
     end
   end
@@ -151,13 +143,10 @@ post '/play_game/dealer/play' do
   if calc_hand_total(session[:dealer_cards]) > DEALER_MIN_NUMBER && calc_hand_total(session[:dealer_cards]) < BLACKJACK_NUMBER
     if calc_hand_total(session[:dealer_cards]) > calc_hand_total(session[:player_cards])
       player_loses!("Dealer wins!")
-      # @error = "Dealer wins."
     elsif calc_hand_total(session[:dealer_cards]) < calc_hand_total(session[:player_cards])
       player_wins!(session[:player_name] + " wins!")
-      # @success = session[:player_name] + " wins!"
     else
       player_ties!("It's a tie. PUSH!")
-      # @success = "It's a tie. PUSH!"
     end
   end
 

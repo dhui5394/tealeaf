@@ -1,0 +1,59 @@
+<h2>BlackJack by the Beach</h2>
+
+Hi <%= session[:player_name] %>! 
+<% if @play_again == true %>
+  Do you want to play again?<br><br>
+  <form id ="form_play_again_yes_button" action="/play_game" method="get">
+    <input type="submit" value="Yes" class="btn btn-primary"/>
+  </form>
+  <form id ="form_play_again_no_button"  action="/end_game" method="get">
+    <input type="submit" value="No" class="btn btn-danger"/>
+  </form>
+  </br></br>
+<% end %>
+
+
+<div class="well">
+  <strong><%= session[:player_name] %>'s' total is <%= calc_hand_total(session[:player_cards]) %> and <%= session[:player_name] %>'s cards are:</strong></br>
+  <% session[:player_cards].each do |c| %> 
+    <img src="/images/cards/<%=c[1].to_s%>_<%=c[0].to_s%>.jpg" class="card_image">
+  <% end %>
+  </br>
+</div>
+
+<div class="well">
+  <% if @show_dealer_playing_cards == true %>
+    <strong>Dealer's total is <%= calc_hand_total(session[:dealer_cards]) %> and his cards are:</strong></br>
+    <% session[:dealer_cards].each do |c| %>
+      <img src="/images/cards/<%=c[1].to_s%>_<%=c[0].to_s%>.jpg" class="card_image">
+    <% end %>
+    </br>
+  <% else %>
+    <strong>Dealer's cards are:</strong></br>
+    <% session[:dealer_cards].each_with_index do |c, i| %>
+      <% if i == 0 %>
+        <img src="/images/cards/cover.jpg" class="card_image">
+      <% else %>
+        <img src="/images/cards/<%=c[1].to_s%>_<%=c[0].to_s%>.jpg" class="card_image">
+      <% end %>
+    <% end %>
+    </br>
+  <% end %>
+</div>
+
+<% if @show_hit_or_stay_option == true %>
+  <%= session[:player_name] %>, do you want to HIT or STAY?</br></br>
+  <form id="form_hit_button" action="/play_game/player/hit" method="post">
+    <input type="submit" value="Hit" class="btn btn-primary"/>
+  </form>
+  <form id="form_stay_button" action="/play_game/player/stay" method="post">
+    <input type="submit" value="Stay" class="btn btn-danger"/>
+  </form>
+<% end %>
+
+<% if @show_dealer_play_button == true %>
+  <form id="form_dealer_play_button" action="/play_game/dealer/play" method="post">
+    <input type="submit" value="See Dealer play his cards out" class="btn btn-primary"/>
+  </form>
+<% end %>
+

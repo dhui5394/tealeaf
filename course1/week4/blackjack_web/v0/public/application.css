@@ -1,0 +1,22 @@
+form#form_hit_button {
+  float: left;
+}
+
+form#form_stay_button {
+  float: left;
+  margin-left: 20px;
+}
+
+form#form_play_again_yes_button {
+  float: left;
+}
+
+form#form_play_again_no_button {
+  float: left;
+  margin-left: 20px;
+}
+
+img.card_image{
+  margin: 0px 5px 5px 0px;
+  height: 80px
+}

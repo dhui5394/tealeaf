@@ -1,0 +1,12 @@
+<% if session[:player_chips] == 0 %>
+  <% redirect '/end_game' %>
+<% end %>
+
+<h2>Place Your Bet, okay?</h2>
+
+<%= session[:player_name] %>, you have <strong><%= session[:player_chips] %> bitcoins</strong> to play with. How much do you want to bet? <br><br>
+
+<form action="/make_bet" method="post">
+  <input type="text" name="player_bet_amount"/><br>
+  <input type="submit" value="Place Bet" class="btn"/>
+</form
